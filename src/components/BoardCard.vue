@@ -1,0 +1,56 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+import { ArrowRight, Users, Droplets, Landmark, Church, ShieldCheck } from 'lucide-vue-next'
+
+const props = defineProps({
+  board: {
+    type: Object,
+    required: true
+  }
+})
+
+const getIcon = (id) => {
+  if (id === 'acueducto') return Droplets
+  if (id === 'comunal') return Landmark
+  if (id === 'cementerio') return Church
+  if (id === 'ediles') return ShieldCheck
+  return Users
+}
+</script>
+
+<template>
+  <div class="glass-card p-1 group hover:-translate-y-3 transition-all duration-500 hover:shadow-2xl hover:shadow-primary-500/10 active:scale-[0.98]">
+    <div class="bg-white/40 rounded-[1.8rem] p-8 h-full flex flex-col relative overflow-hidden">
+      <!-- Decor -->
+      <div class="absolute top-0 right-0 w-32 h-32 bg-primary-100/30 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary-200/50 transition-colors"></div>
+      
+      <div class="relative z-10 flex-grow">
+        <div class="flex items-center justify-between mb-8">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-500/30 transform group-hover:rotate-6 transition-transform duration-500">
+            <component :is="getIcon(board.id)" class="w-8 h-8 text-white" />
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1 bg-secondary-100 rounded-full">
+            <ShieldCheck class="w-3.5 h-3.5 text-secondary-600" />
+            <span class="text-[10px] font-black text-secondary-700 uppercase tracking-widest">Oficial</span>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-black mb-4 text-slate-900 leading-tight group-hover:text-primary-600 transition-colors">{{ board.name }}</h3>
+        
+        <p class="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-3">
+          {{ board.mission }}
+        </p>
+      </div>
+      
+      <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
+        <RouterLink 
+          :to="{ name: 'board-detail', params: { id: board.id } }"
+          class="text-sm font-black text-primary-600 uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all"
+        >
+          Explorar Gestión
+          <ArrowRight class="w-4 h-4" />
+        </RouterLink>
+      </div>
+    </div>
+  </div>
+</template>
