@@ -18,7 +18,7 @@ const quickAccess = [
 </script>
 
 <template>
-  <div class="space-y-32 pb-32">
+  <div class="space-y-32 pb-32 mesh-gradient">
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center overflow-hidden pt-12">
       <!-- Background Elements -->
@@ -115,14 +115,36 @@ const quickAccess = [
         <template v-for="item in quickAccess" :key="item.name">
           <RouterLink 
             :to="item.path.startsWith('#') ? { path: '/', hash: item.path } : item.path"
-            class="glass-card p-8 group hover:-translate-y-2 transition-all duration-500 hover:bg-white"
+            class="glass-card p-10 group hover:-translate-y-3 transition-all duration-700 hover:bg-white relative overflow-hidden active:scale-95"
           >
-            <div :class="[item.color, 'w-16 h-16 rounded-2xl text-white mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl relative overflow-hidden group/icon-box']">
-              <div class="absolute inset-0 bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700 rounded-full"></div>
-              <component :is="item.icon" class="w-8 h-8 relative z-10 animate-float" />
+            <!-- Hover Background Glow -->
+            <div :class="[item.color, 'absolute -bottom-10 -right-10 w-40 h-40 opacity-[0.03] blur-3xl group-hover:opacity-20 transition-opacity duration-700 rounded-full']"></div>
+            
+            <div class="relative mb-10">
+              <div :class="[item.color, 'w-20 h-20 rounded-3xl text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:-rotate-3 transition-all duration-700 relative overflow-hidden']">
+                <!-- Dual Tone Glow -->
+                <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/10 rotate-45 transform pointer-events-none"></div>
+                
+                <component :is="item.icon" class="w-10 h-10 relative z-10 animate-premium-float" stroke-width="2.5" />
+                
+                <!-- Inner Glow -->
+                <div class="absolute inset-0 shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)] rounded-3xl"></div>
+              </div>
+
+              <!-- Orbiting Particle (Pseudo-icon enhancement) -->
+              <div class="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-white shadow-lg animate-pulse" :class="item.color"></div>
             </div>
-            <div class="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{{ item.label }}</div>
-            <div class="text-2xl font-black text-slate-900">{{ item.name }}</div>
+            
+            <div class="relative z-10">
+              <div class="text-sm font-black text-slate-400 uppercase tracking-[0.3em] mb-3">{{ item.label }}</div>
+              <div class="text-4xl font-black text-slate-900 tracking-tighter leading-none">{{ item.name }}</div>
+            </div>
+
+            <!-- Modern Arrow Interaction -->
+            <div class="absolute top-10 right-10 w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-primary-500 group-hover:text-primary-500 transition-all duration-500 group-hover:rotate-[-45deg]">
+               <ArrowRight class="w-5 h-5" />
+            </div>
           </RouterLink>
         </template>
       </div>
@@ -173,27 +195,39 @@ const quickAccess = [
              <div class="order-2 lg:order-1">
                 <div class="grid grid-cols-2 gap-6">
                    <div class="space-y-6">
-                      <div class="glass-card bg-white/5 border-white/10 p-8 hover:bg-white/10 transition-colors">
-                         <Heart class="w-10 h-10 text-rose-500 mb-4" />
-                         <h4 class="text-white font-black text-xl mb-2">Comunidad</h4>
-                         <p class="text-slate-400 text-sm">Fortaleciendo el tejido social de nuestra vereda.</p>
+                      <div class="glass-card bg-white/5 border-white/10 p-8 hover:bg-white/[0.08] transition-all duration-500 group active:scale-95">
+                         <div class="icon-container-glass !bg-rose-500/10 !text-rose-500 mb-8 border-rose-500/20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 !w-16 !h-16 relative">
+                            <Heart class="w-8 h-8 animate-pulse relative z-10" />
+                            <div class="absolute inset-0 bg-rose-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         </div>
+                         <h4 class="text-white font-black text-2xl mb-3 tracking-tight">Comunidad</h4>
+                         <p class="text-slate-400 text-sm leading-relaxed font-medium">Fortaleciendo el tejido social de nuestra vereda.</p>
                       </div>
-                      <div class="glass-card bg-white/5 border-white/10 p-8 translate-x-4 hover:bg-white/10 transition-colors">
-                         <ShieldCheck class="w-10 h-10 text-primary-400 mb-4" />
-                         <h4 class="text-white font-black text-xl mb-2">Seguridad</h4>
-                         <p class="text-slate-400 text-sm">Comunicación efectiva para una zona segura.</p>
+                      <div class="glass-card bg-white/5 border-white/10 p-8 translate-x-4 hover:bg-white/[0.08] transition-all duration-500 group active:scale-95">
+                         <div class="icon-container-glass !bg-primary-500/10 !text-primary-400 mb-8 border-primary-500/20 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 !w-16 !h-16 relative">
+                            <ShieldCheck class="w-8 h-8 relative z-10" />
+                            <div class="absolute inset-0 bg-primary-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         </div>
+                         <h4 class="text-white font-black text-2xl mb-3 tracking-tight">Seguridad</h4>
+                         <p class="text-slate-400 text-sm leading-relaxed font-medium">Comunicación efectiva para una zona segura.</p>
                       </div>
                    </div>
                    <div class="space-y-6 pt-12">
-                      <div class="glass-card bg-white/5 border-white/10 p-8 hover:bg-white/10 transition-colors">
-                         <Star class="w-10 h-10 text-amber-400 mb-4" />
-                         <h4 class="text-white font-black text-xl mb-2">Progreso</h4>
-                         <p class="text-slate-400 text-sm">Impulsando el desarrollo sustentable local.</p>
+                      <div class="glass-card bg-white/5 border-white/10 p-8 hover:bg-white/[0.08] transition-all duration-500 group active:scale-95">
+                         <div class="icon-container-glass !bg-amber-500/10 !text-amber-400 mb-8 border-amber-500/20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 !w-16 !h-16 relative">
+                            <Star class="w-8 h-8 animate-rotate-slow relative z-10" />
+                            <div class="absolute inset-0 bg-amber-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         </div>
+                         <h4 class="text-white font-black text-2xl mb-3 tracking-tight">Progreso</h4>
+                         <p class="text-slate-400 text-sm leading-relaxed font-medium">Impulsando el desarrollo sustentable local.</p>
                       </div>
-                      <div class="glass-card bg-white/5 border-white/10 p-8 -translate-x-4 hover:bg-white/10 transition-colors">
-                         <Briefcase class="w-10 h-10 text-secondary-400 mb-4" />
-                         <h4 class="text-white font-black text-xl mb-2">Oportunidad</h4>
-                         <p class="text-slate-400 text-sm">Visibilizando el talento y comercio local.</p>
+                      <div class="glass-card bg-white/5 border-white/10 p-8 -translate-x-4 hover:bg-white/[0.08] transition-all duration-500 group active:scale-95">
+                         <div class="icon-container-glass !bg-secondary-500/10 !text-secondary-400 mb-8 border-secondary-500/20 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 !w-16 !h-16 relative">
+                            <Briefcase class="w-8 h-8 animate-premium-float relative z-10" />
+                            <div class="absolute inset-0 bg-secondary-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         </div>
+                         <h4 class="text-white font-black text-2xl mb-3 tracking-tight">Oportunidad</h4>
+                         <p class="text-slate-400 text-sm leading-relaxed font-medium">Visibilizando el talento y comercio local.</p>
                       </div>
                    </div>
                 </div>

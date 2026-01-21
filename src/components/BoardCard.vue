@@ -26,10 +26,14 @@ const getIcon = (id) => {
       
       <div class="relative z-10 flex-grow">
         <div class="flex items-center justify-between mb-8">
-          <div class="icon-container-primary animate-float group-hover:rotate-6 transition-transform duration-500 !w-16 !h-16">
-            <component :is="getIcon(board.id)" class="w-8 h-8 text-white" />
+          <div class="icon-container-primary !w-20 !h-20 animate-premium-float group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 relative overflow-hidden">
+            <component :is="getIcon(board.id)" class="w-10 h-10 text-white relative z-10" />
+            
+            <!-- Dynamic Glows -->
+            <div class="absolute inset-0 bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700 rounded-full"></div>
+            <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/10 rotate-45 transform"></div>
           </div>
-          <div class="flex items-center gap-2 px-3 py-1 bg-secondary-100 rounded-full">
+          <div class="flex items-center gap-2 px-4 py-2 bg-secondary-50 border border-secondary-100 rounded-full shadow-sm">
             <ShieldCheck class="w-3.5 h-3.5 text-secondary-600 animate-pulse" />
             <span class="text-[10px] font-black text-secondary-700 uppercase tracking-widest">Oficial</span>
           </div>

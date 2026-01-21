@@ -90,6 +90,13 @@ body {
   @apply bg-clip-text text-transparent bg-gradient-to-br from-primary-700 via-primary-500 to-secondary-500;
 }
 
+.mesh-gradient {
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(210,100%,98%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(202,100%,95%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(190,100%,95%,1) 0, transparent 50%);
+}
+
 /* Page Transitions */
 .page-enter-active,
 .page-leave-active {
@@ -109,12 +116,12 @@ body {
 /* Premium Icon Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-3px); }
 }
 
 @keyframes pulse-glow {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(14, 165, 233, 0)); }
-  50% { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4)); }
+  50% { transform: scale(1.02); filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.3)); }
 }
 
 @keyframes rotate-slow {
@@ -127,21 +134,54 @@ body {
 .animate-rotate-slow { animation: rotate-slow 12s linear infinite; }
 
 .icon-container {
-  @apply relative flex items-center justify-center transition-all duration-500;
+  @apply relative flex items-center justify-center transition-all duration-500 overflow-hidden;
+}
+
+.icon-container {
+  @apply relative flex items-center justify-center transition-all duration-500 overflow-hidden;
 }
 
 .icon-container-primary {
-  @apply icon-container w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-lg shadow-primary-500/30;
+  @apply icon-container w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-400 text-white shadow-[0_10px_20px_-5px_rgba(2,132,199,0.3)] border border-white/20;
 }
 
 .icon-container-secondary {
-  @apply icon-container w-12 h-12 rounded-2xl bg-gradient-to-br from-secondary-500 to-secondary-700 text-white shadow-lg shadow-secondary-500/30;
+  @apply icon-container w-12 h-12 rounded-2xl bg-gradient-to-br from-secondary-600 to-secondary-400 text-white shadow-[0_10px_20px_-5px_rgba(236,72,153,0.3)] border border-white/20;
 }
+
+.icon-container-glass {
+  @apply icon-container w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
 .icon-container-dark {
-  @apply icon-container w-12 h-12 rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/40 relative;
+  @apply icon-container w-12 h-12 rounded-2xl bg-slate-900 text-white shadow-xl relative;
 }
 
 .icon-container-dark::after {
   content: '';
-  @apply absolute -inset-1.5 border border-slate-700/30 rounded-[1.3rem] animate-pulse;
+  @apply absolute -inset-1 border border-slate-800 rounded-[1.3rem] animate-pulse pointer-events-none;
 }
+
+/* Icon Pulse Ring Effect */
+.icon-ring {
+  @apply absolute inset-0 rounded-full border-2 border-current opacity-0;
+}
+
+@keyframes icon-ripple {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-ripple {
+  animation: icon-ripple 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Better Floating */
+@keyframes premium-float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  33% { transform: translateY(-4px) rotate(2deg); }
+  66% { transform: translateY(-2px) rotate(-1deg); }
+}
+
+.animate-premium-float { animation: premium-float 4s ease-in-out infinite; }
+

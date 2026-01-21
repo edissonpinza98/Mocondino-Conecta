@@ -15,8 +15,10 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
         <!-- Brand Column -->
         <div class="lg:col-span-4 space-y-8">
           <RouterLink to="/" class="flex items-center space-x-4 group">
-            <div class="icon-container-primary !w-12 !h-12 group-hover:rotate-[360deg] transition-transform duration-1000">
-               <MapPinIcon class="w-7 h-7 text-white" />
+            <div class="icon-container-primary !w-14 !h-14 group-hover:rotate-[360deg] transition-transform duration-1000 relative overflow-hidden">
+               <MapPinIcon class="w-8 h-8 text-white relative z-10 animate-premium-float" stroke-width="2.5" />
+               <div class="absolute inset-0 bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700 rounded-full"></div>
+               <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/10 rotate-45"></div>
             </div>
             <div class="flex flex-col text-left">
               <span class="text-2xl font-black leading-none tracking-tighter">MOCONDINO</span>
@@ -29,9 +31,29 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
           </p>
 
           <div class="flex gap-4">
-            <a v-for="icon in [Facebook, Instagram, MessageCircle, Twitter]" :key="icon" href="#" class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-600 hover:border-primary-500 hover:scale-110 hover:-rotate-6 transition-all group overflow-hidden relative">
-              <div class="absolute inset-0 bg-white/10 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
-              <component :is="icon" class="w-5 h-5 text-slate-400 group-hover:text-white animate-float relative z-10" />
+            <!-- Facebook -->
+            <a href="#" class="icon-container-glass !w-14 !h-14 !bg-blue-500/10 border-blue-500/20 hover:!bg-blue-500 hover:border-blue-500 hover:scale-110 hover:-rotate-6 transition-all duration-500 group/social relative">
+              <div class="absolute inset-0 bg-blue-500/20 blur-xl opacity-0 group-hover/social:opacity-100 transition-opacity"></div>
+              <Facebook class="w-6 h-6 text-blue-400 group-hover/social:text-white animate-premium-float relative z-10" stroke-width="2.5" />
+            </a>
+            
+            <!-- Instagram -->
+            <a href="#" class="icon-container-glass !w-14 !h-14 !bg-pink-500/10 border-pink-500/20 hover:!bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:border-pink-500 hover:scale-110 hover:-rotate-6 transition-all duration-500 group/social relative">
+              <div class="absolute inset-0 bg-pink-500/20 blur-xl opacity-0 group-hover/social:opacity-100 transition-opacity"></div>
+              <Instagram class="w-6 h-6 text-pink-400 group-hover/social:text-white animate-premium-float relative z-10" stroke-width="2.5" />
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="#" class="icon-container-glass !w-14 !h-14 !bg-green-500/10 border-green-500/20 hover:!bg-green-500 hover:border-green-500 hover:scale-110 hover:-rotate-6 transition-all duration-500 group/social relative">
+              <div class="absolute inset-0 bg-green-500/20 blur-xl opacity-0 group-hover/social:opacity-100 transition-opacity"></div>
+              <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ripple opacity-0 group-hover/social:opacity-100"></div>
+              <MessageCircle class="w-6 h-6 text-green-400 group-hover/social:text-white animate-premium-float relative z-10" stroke-width="2.5" />
+            </a>
+            
+            <!-- Twitter -->
+            <a href="#" class="icon-container-glass !w-14 !h-14 !bg-sky-500/10 border-sky-500/20 hover:!bg-sky-500 hover:border-sky-500 hover:scale-110 hover:-rotate-6 transition-all duration-500 group/social relative">
+              <div class="absolute inset-0 bg-sky-500/20 blur-xl opacity-0 group-hover/social:opacity-100 transition-opacity"></div>
+              <Twitter class="w-6 h-6 text-sky-400 group-hover/social:text-white animate-premium-float relative z-10" stroke-width="2.5" />
             </a>
           </div>
         </div>
@@ -74,26 +96,30 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
         <div class="lg:col-span-4">
           <h3 class="text-xs font-black text-primary-500 uppercase tracking-[0.3em] mb-10">Oficina Principal</h3>
           <div class="space-y-8">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
-                <MapPin class="w-5 h-5 text-secondary-500 group-hover/icon:animate-bounce" />
+            <div class="flex items-start gap-4 group/contact">
+              <div class="icon-container-glass !w-12 !h-12 !bg-secondary-500/10 border-secondary-500/20 flex items-center justify-center shrink-0 group-hover/contact:scale-110 group-hover/contact:rotate-6 transition-all duration-500 relative">
+                <MapPin class="w-6 h-6 text-secondary-400 relative z-10 animate-premium-float" stroke-width="2.5" />
+                <div class="absolute inset-0 bg-secondary-500/20 blur-xl opacity-0 group-hover/contact:opacity-100 transition-opacity"></div>
               </div>
-              <p class="text-slate-400 text-sm font-bold leading-relaxed">
+              <p class="text-slate-400 text-sm font-bold leading-relaxed group-hover/contact:text-slate-300 transition-colors">
                 Salón Comunal Mocondino <br/>
                 Corregimiento de Mocondino, Pasto, Nariño
               </p>
             </div>
             
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
-                <MessageCircle class="w-5 h-5 text-green-500 group-hover/icon:animate-pulse" />
+            <div class="flex items-center gap-4 group/contact">
+              <div class="icon-container-glass !w-12 !h-12 !bg-green-500/10 border-green-500/20 flex items-center justify-center shrink-0 group-hover/contact:scale-110 group-hover/contact:-rotate-6 transition-all duration-500 relative">
+                <MessageCircle class="w-6 h-6 text-green-400 relative z-10 animate-pulse" stroke-width="2.5" />
+                <div class="absolute inset-0 bg-green-500/20 blur-xl opacity-0 group-hover/contact:opacity-100 transition-opacity"></div>
+                <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-ripple"></div>
               </div>
               <a href="https://wa.me/573123456789" target="_blank" class="text-slate-400 text-sm font-bold hover:text-white transition-colors">+57 312 345 6789</a>
             </div>
 
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
-                <Mail class="w-5 h-5 text-accent-coral group-hover/icon:scale-110 transition-transform" />
+            <div class="flex items-center gap-4 group/contact">
+              <div class="icon-container-glass !w-12 !h-12 !bg-accent-coral/10 border-accent-coral/20 flex items-center justify-center shrink-0 group-hover/contact:scale-110 group-hover/contact:rotate-6 transition-all duration-500 relative">
+                <Mail class="w-6 h-6 text-accent-coral relative z-10 animate-premium-float" stroke-width="2.5" />
+                <div class="absolute inset-0 bg-accent-coral/20 blur-xl opacity-0 group-hover/contact:opacity-100 transition-opacity"></div>
               </div>
               <a href="mailto:hola@mocondino.com" class="text-slate-400 text-sm font-bold hover:text-white transition-colors">hola@mocondino.com</a>
             </div>
@@ -103,8 +129,15 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
 
       <!-- Bottom Bar -->
       <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex items-center gap-2 text-slate-500 text-xs font-black uppercase tracking-widest">
-           HECHO CON <Heart class="w-4 h-4 text-accent-coral animate-pulse" /> PARA LA VEREDA
+        <div class="flex items-center gap-3 text-slate-500 text-xs font-black uppercase tracking-widest">
+           <span>HECHO CON</span>
+           <div class="relative inline-flex items-center justify-center">
+             <div class="w-8 h-8 rounded-xl bg-accent-coral/10 border border-accent-coral/20 flex items-center justify-center group hover:bg-accent-coral/20 transition-all">
+               <Heart class="w-4 h-4 text-accent-coral animate-pulse fill-accent-coral/50" stroke-width="2.5" />
+               <div class="absolute inset-0 bg-accent-coral/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+             </div>
+           </div>
+           <span>PARA LA VEREDA</span>
         </div>
         
         <div class="flex items-center gap-12">

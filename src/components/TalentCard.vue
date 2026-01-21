@@ -18,20 +18,23 @@ const props = defineProps({
           :alt="talent.name"
           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="absolute top-4 right-4">
           <div 
-            class="backdrop-blur-md px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20"
-            :class="talent.type === 'artista' ? 'bg-purple-600/80 text-white' : 'bg-primary-600/80 text-white'"
+            class="backdrop-blur-xl px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-2xl border border-white/30 relative overflow-hidden"
+            :class="talent.type === 'artista' ? 'bg-purple-600/90 text-white' : 'bg-primary-600/90 text-white'"
           >
-            {{ talent.type }}
+            <div class="absolute inset-0 bg-white/10"></div>
+            <span class="relative z-10">{{ talent.type }}</span>
           </div>
         </div>
       </div>
       <div class="p-8">
-        <div class="flex items-center gap-2 mb-3">
-          <Verified class="w-4 h-4 text-primary-500" />
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ talent.role }}</span>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center">
+            <Verified class="w-5 h-5 text-primary-600" />
+          </div>
+          <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.25em]">{{ talent.role }}</span>
         </div>
         <h3 class="text-2xl font-black mb-3 text-slate-900 leading-tight">{{ talent.name }}</h3>
         <p class="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-3">
