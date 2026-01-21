@@ -31,8 +31,10 @@ const quickAccess = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div class="animate-fade-in-up">
-            <div class="inline-flex items-center space-x-2 px-4 py-2 mb-8 bg-white/50 backdrop-blur-md border border-white/40 rounded-full shadow-sm">
-              <Sparkles class="w-4 h-4 text-primary-600" />
+            <div class="inline-flex items-center space-x-2 px-4 py-2 mb-8 bg-white/50 backdrop-blur-md border border-white/40 rounded-full shadow-sm group/badge hover:bg-white/80 transition-colors">
+              <div class="animate-rotate-slow">
+                <Sparkles class="w-4 h-4 text-primary-600" />
+              </div>
               <span class="text-xs font-black tracking-widest text-primary-900 uppercase">Innovación Comunitaria</span>
             </div>
             
@@ -88,7 +90,7 @@ const quickAccess = [
                <div class="absolute bottom-8 left-8 right-8">
                   <div class="glass-card p-6 border-white/40 shadow-2xl transform group-hover:-translate-y-2 transition-transform duration-500">
                      <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center text-white">
+                        <div class="icon-container-primary animate-pulse-glow">
                            <ShieldCheck class="w-6 h-6" />
                         </div>
                         <div>
@@ -115,8 +117,9 @@ const quickAccess = [
             :to="item.path.startsWith('#') ? { path: '/', hash: item.path } : item.path"
             class="glass-card p-8 group hover:-translate-y-2 transition-all duration-500 hover:bg-white"
           >
-            <div :class="[item.color, 'w-16 h-16 rounded-2xl text-white mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500']">
-              <component :is="item.icon" class="w-8 h-8" />
+            <div :class="[item.color, 'w-16 h-16 rounded-2xl text-white mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl relative overflow-hidden group/icon-box']">
+              <div class="absolute inset-0 bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-700 rounded-full"></div>
+              <component :is="item.icon" class="w-8 h-8 relative z-10 animate-float" />
             </div>
             <div class="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{{ item.label }}</div>
             <div class="text-2xl font-black text-slate-900">{{ item.name }}</div>

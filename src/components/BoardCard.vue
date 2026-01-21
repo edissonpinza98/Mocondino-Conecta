@@ -26,11 +26,11 @@ const getIcon = (id) => {
       
       <div class="relative z-10 flex-grow">
         <div class="flex items-center justify-between mb-8">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-500/30 transform group-hover:rotate-6 transition-transform duration-500">
+          <div class="icon-container-primary animate-float group-hover:rotate-6 transition-transform duration-500 !w-16 !h-16">
             <component :is="getIcon(board.id)" class="w-8 h-8 text-white" />
           </div>
           <div class="flex items-center gap-2 px-3 py-1 bg-secondary-100 rounded-full">
-            <ShieldCheck class="w-3.5 h-3.5 text-secondary-600" />
+            <ShieldCheck class="w-3.5 h-3.5 text-secondary-600 animate-pulse" />
             <span class="text-[10px] font-black text-secondary-700 uppercase tracking-widest">Oficial</span>
           </div>
         </div>

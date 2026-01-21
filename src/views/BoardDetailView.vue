@@ -145,7 +145,7 @@ const addNewAnnouncement = () => {
             <div class="mt-12 flex flex-wrap gap-6">
                <div class="flex items-center gap-3 text-slate-500">
                   <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm">
-                     <Clock class="w-5 h-5 text-primary-500" />
+                     <Clock class="w-5 h-5 text-primary-500 animate-rotate-slow" />
                   </div>
                   <div>
                      <div class="text-[10px] font-black uppercase text-slate-400">Próxima Reunión</div>
@@ -155,7 +155,7 @@ const addNewAnnouncement = () => {
 
                <div v-if="board.whatsapp || canEdit" class="flex items-center gap-3 group/contact relative">
                   <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm text-green-500">
-                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049c0 2.123.555 4.197 1.608 6.041l-1.71 6.241 6.386-1.675a11.832 11.832 0 005.76 1.496h.004c6.637 0 12.046-5.412 12.049-12.05a11.776 11.776 0 00-3.535-8.528z"/></svg>
+                     <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049c0 2.123.555 4.197 1.608 6.041l-1.71 6.241 6.386-1.675a11.832 11.832 0 005.76 1.496h.004c6.637 0 12.046-5.412 12.049-12.05a11.776 11.776 0 00-3.535-8.528z"/></svg>
                   </div>
                   <div v-if="!isEditingContact">
                      <div class="text-[10px] font-black uppercase text-slate-400">Contacto Directo</div>
@@ -212,8 +212,8 @@ const addNewAnnouncement = () => {
           <!-- Recent Meetings Section -->
           <section class="animate-fade-in-up delay-400">
             <div class="flex items-center justify-between mb-8">
-               <h2 class="text-3xl font-black flex items-center gap-4 tracking-tighter uppercase">
-                  <div class="w-12 h-12 rounded-2xl bg-primary-600 flex items-center justify-center text-white">
+               <h2 class="text-3xl font-black flex items-center gap-4 tracking-tighter uppercase group/title">
+                  <div class="icon-container-primary group-hover/title:scale-110 group-hover/title:rotate-3 transition-all duration-500 animate-pulse-glow">
                      <FileText class="w-6 h-6" />
                   </div>
                   Últimas Actas
@@ -287,8 +287,8 @@ const addNewAnnouncement = () => {
           <!-- Board Members Section -->
           <section class="animate-fade-in-up delay-500">
             <div class="flex items-center justify-between mb-8">
-              <h2 class="text-3xl font-black flex items-center gap-4 tracking-tighter uppercase">
-                 <div class="w-12 h-12 rounded-2xl bg-secondary-600 flex items-center justify-center text-white">
+              <h2 class="text-3xl font-black flex items-center gap-4 tracking-tighter uppercase group/title">
+                 <div class="icon-container-secondary group-hover/title:scale-110 group-hover/title:-rotate-3 transition-all duration-500 animate-float">
                     <Users class="w-6 h-6" />
                  </div>
                  Cuerpo Directivo
@@ -317,11 +317,11 @@ const addNewAnnouncement = () => {
                 
                 <div v-if="member.whatsapp || member.facebook" class="pt-4 border-t border-slate-100 mt-auto flex gap-2">
                   <a v-if="member.whatsapp" :href="`https://wa.me/57${member.whatsapp}`" target="_blank" class="flex items-center justify-center gap-2 flex-grow py-3 bg-green-50 text-green-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-green-600 hover:text-white transition-all">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049c0 2.123.555 4.197 1.608 6.041l-1.71 6.241 6.386-1.675a11.832 11.832 0 005.76 1.496h.004c6.637 0 12.046-5.412 12.049-12.05a11.776 11.776 0 00-3.535-8.528z"/></svg>
+                    <svg class="w-4 h-4 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049c0 2.123.555 4.197 1.608 6.041l-1.71 6.241 6.386-1.675a11.832 11.832 0 005.76 1.496h.004c6.637 0 12.046-5.412 12.049-12.05a11.776 11.776 0 00-3.535-8.528z"/></svg>
                     WhatsApp
                   </a>
                   <a v-if="member.facebook" :href="member.facebook" target="_blank" class="flex items-center justify-center p-3 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all shrink-0">
-                    <Facebook class="w-4 h-4" />
+                    <Facebook class="w-4 h-4 group-hover:animate-float" />
                   </a>
                 </div>
               </div>
@@ -487,15 +487,27 @@ const addNewAnnouncement = () => {
           </section>
 
           <!-- Admin Info (Visible only if NOT logged in) -->
-          <section v-if="!canEdit" class="glass-card p-10 border-dashed border-2 border-slate-200">
-            <h2 class="text-lg font-black mb-6 flex items-center gap-3 uppercase tracking-tighter">
-               <Layout class="w-5 h-5 text-primary-600" />
-               Área Directiva
-            </h2>
-            <p class="text-sm text-slate-500 mb-10 leading-relaxed font-medium">Si eres directivo de esta junta, ingresa con tu código para gestionar este espacio.</p>
-            <RouterLink to="/login" class="w-full btn-premium bg-slate-100 text-slate-700 !py-4 rounded-xl hover:bg-slate-200 transition-all text-sm font-black uppercase tracking-widest">
-              Ingresar al Sistema
-            </RouterLink>
+          <section v-if="!canEdit" class="glass-card p-10 bg-slate-50 border-slate-200 border-2 shadow-xl border-dashed group/adminbox overflow-hidden relative">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-100/30 rounded-full blur-3xl group-hover/adminbox:bg-primary-200/50 transition-colors"></div>
+            
+            <div class="relative z-10">
+              <div class="icon-container-dark !w-20 !h-20 !rounded-[2rem] mb-10 group-hover/adminbox:scale-110 transition-transform duration-700 mx-auto lg:mx-0">
+                 <Shield class="w-8 h-8 text-white animate-pulse-glow" />
+              </div>
+              <h2 class="text-3xl font-black mb-4 text-slate-900 uppercase tracking-tighter leading-none">
+                 Portal de <br/> <span class="text-primary-600">Gestión Oficinal</span>
+              </h2>
+              <p class="text-sm text-slate-500 mb-10 leading-relaxed font-bold">
+                Acceso exclusivo para directivos habilitados. Ingrese para actualizar actas y comunicados oficiales.
+              </p>
+              <RouterLink 
+                to="/login" 
+                class="w-full btn-premium bg-slate-900 text-white !py-5 rounded-[1.5rem] hover:bg-primary-600 transition-all text-[11px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-slate-900/40 flex items-center justify-center gap-3 group/loginbtn"
+              >
+                AUTENTICARSE 
+                <ArrowUpRight class="w-4 h-4 group-hover/loginbtn:translate-x-1 group-hover/loginbtn:-translate-y-1 transition-transform" />
+              </RouterLink>
+            </div>
           </section>
         </div>
       </div>

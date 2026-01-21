@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { useCommunityStore } from './stores/community'
+import { MapPin } from 'lucide-vue-next'
 import TheNavbar from './components/TheNavbar.vue'
 import TheFooter from './components/TheFooter.vue'
 
@@ -18,10 +19,16 @@ onMounted(() => {
     
     <!-- Loading Overlay -->
     <transition name="page">
-      <div v-if="store.loading" class="fixed inset-0 z-[100] bg-white/80 backdrop-blur-md flex items-center justify-center">
-        <div class="flex flex-col items-center gap-6">
-          <div class="w-16 h-16 border-4 border-slate-100 border-t-primary-600 rounded-full animate-spin"></div>
-          <div class="text-xs font-black text-slate-400 uppercase tracking-widest animate-pulse">Cargando Mocondino...</div>
+      <div v-if="store.loading" class="fixed inset-0 z-[100] bg-white/90 backdrop-blur-2xl flex items-center justify-center">
+        <div class="flex flex-col items-center">
+          <div class="relative w-24 h-24 mb-8">
+            <div class="absolute inset-0 border-4 border-slate-100 rounded-[2.5rem]"></div>
+            <div class="absolute inset-0 border-4 border-t-primary-600 rounded-[2.5rem] animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <MapPin class="w-8 h-8 text-primary-600 animate-bounce" />
+            </div>
+          </div>
+          <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] animate-pulse">Sincronizando Mocondino...</div>
         </div>
       </div>
     </transition>

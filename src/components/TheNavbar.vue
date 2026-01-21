@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useCommunityStore } from '../stores/community'
-import { Menu, X, ChevronDown, Sparkles, MapPin } from 'lucide-vue-next'
+import { Menu, X, ChevronDown, Sparkles, MapPin, Shield, LogOut, Heart } from 'lucide-vue-next'
 
 const store = useCommunityStore()
 const isOpen = ref(false)
@@ -61,7 +61,7 @@ const toggleDropdown = (name) => {
         <div class="px-6 h-16 flex items-center justify-between">
           <!-- Logo -->
           <RouterLink to="/" class="flex items-center space-x-3 group">
-            <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-500">
+            <div class="icon-container-primary !w-10 !h-10 group-hover:rotate-[360deg] transition-transform duration-1000 ease-in-out">
                <MapPin class="w-6 h-6 text-white" />
             </div>
             <div class="flex flex-col text-left">
@@ -71,21 +71,21 @@ const toggleDropdown = (name) => {
           </RouterLink>
 
           <!-- Desktop Nav -->
-          <div class="hidden md:flex items-center space-x-2">
+          <div class="hidden lg:flex items-center gap-x-1 xl:gap-x-2">
             <!-- Juntas Dropdown -->
             <div class="relative group" @mouseenter="activeDropdown = 'juntas'" @mouseleave="activeDropdown = null">
               <button 
-                class="px-4 py-2 rounded-xl text-sm font-black text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1"
+                class="px-2 xl:px-4 py-2 rounded-xl text-xs xl:text-sm font-black text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center gap-1"
                 :class="{ 'text-primary-600 bg-primary-50': activeDropdown === 'juntas' }"
               >
                 Juntas
-                <ChevronDown class="w-4 h-4 transition-transform duration-300" :class="{ 'rotate-180': activeDropdown === 'juntas' }" />
+                <ChevronDown class="w-3.5 h-3.5 transition-transform duration-300" :class="{ 'rotate-180': activeDropdown === 'juntas' }" />
               </button>
               
               <transition name="page">
                 <div 
                   v-if="activeDropdown === 'juntas'"
-                  class="absolute top-full left-0 mt-2 w-56 glass-card !rounded-2xl border-white/60 p-2 shadow-2xl"
+                  class="absolute top-full left-0 mt-2 w-56 glass-card !rounded-2xl border-white/60 p-2 shadow-2xl backdrop-blur-2xl bg-white/90"
                 >
                   <RouterLink 
                     v-for="junta in juntas" 
@@ -102,17 +102,17 @@ const toggleDropdown = (name) => {
             <!-- Ediles Dropdown -->
             <div class="relative group" @mouseenter="activeDropdown = 'ediles'" @mouseleave="activeDropdown = null">
               <button 
-                class="px-4 py-2 rounded-xl text-sm font-black text-slate-600 hover:text-secondary-600 hover:bg-secondary-50 transition-all flex items-center gap-1"
+                class="px-2 xl:px-4 py-2 rounded-xl text-xs xl:text-sm font-black text-slate-600 hover:text-secondary-600 hover:bg-secondary-50 transition-all flex items-center gap-1"
                 :class="{ 'text-secondary-600 bg-secondary-50': activeDropdown === 'ediles' }"
               >
                 Ediles
-                <ChevronDown class="w-4 h-4 transition-transform duration-300" :class="{ 'rotate-180': activeDropdown === 'ediles' }" />
+                <ChevronDown class="w-3.5 h-3.5 transition-transform duration-300" :class="{ 'rotate-180': activeDropdown === 'ediles' }" />
               </button>
               
               <transition name="page">
                 <div 
                   v-if="activeDropdown === 'ediles'"
-                  class="absolute top-full left-0 mt-2 w-56 glass-card !rounded-2xl border-white/60 p-2 shadow-2xl"
+                  class="absolute top-full left-0 mt-2 w-56 glass-card !rounded-2xl border-white/60 p-2 shadow-2xl backdrop-blur-2xl bg-white/90"
                 >
                   <RouterLink 
                     v-for="edil in ediles" 
@@ -130,39 +130,48 @@ const toggleDropdown = (name) => {
               v-for="link in navLinks" 
               :key="link.path"
               :to="link.path"
-              class="px-4 py-2 rounded-xl text-sm font-black text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition-all font-sans"
+              class="px-2 xl:px-4 py-2 rounded-xl text-xs xl:text-sm font-black text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition-all font-sans"
               active-class="text-primary-600 bg-primary-50"
             >
               {{ link.name }}
             </RouterLink>
 
-            <div class="h-6 w-px bg-slate-200 mx-4"></div>
+            <div class="h-6 w-px bg-slate-200 mx-2"></div>
 
+            <!-- Admin Button -->
             <RouterLink 
               v-if="!store.user"
               to="/login"
-              class="px-4 py-2 rounded-xl text-sm font-black text-slate-400 hover:text-primary-600 transition-all font-sans"
+              class="px-3 xl:px-4 py-2 rounded-xl text-[10px] xl:text-xs font-black text-slate-500 hover:text-white bg-slate-50 hover:bg-slate-900 border border-slate-200 transition-all flex items-center gap-2 group/admin shadow-sm hover:shadow-lg"
             >
-              Acceso Admin
+              <div class="w-6 h-6 rounded-lg bg-slate-900 flex items-center justify-center group-hover/admin:bg-primary-500 transition-colors">
+                <Shield class="w-3.5 h-3.5 text-white animate-pulse-glow" />
+              </div>
+              ACCESO ADMIN
             </RouterLink>
+            
             <button 
               v-else
               @click="store.logout()"
-              class="px-4 py-2 rounded-xl text-sm font-black text-primary-600 hover:bg-primary-50 transition-all font-sans"
+              class="px-3 xl:px-4 py-2 rounded-xl text-[10px] xl:text-xs font-black text-red-600 hover:text-white bg-red-50 hover:bg-red-600 border border-red-100 transition-all flex items-center gap-2 group/out shadow-sm hover:shadow-lg"
             >
-              Salir
+              <div class="w-6 h-6 rounded-lg bg-red-600 flex items-center justify-center">
+                <LogOut class="w-3.5 h-3.5 text-white group-hover/out:-translate-x-0.5 transition-transform" />
+              </div>
+              SALIR
             </button>
 
             <RouterLink 
               to="/participar" 
-              class="btn-premium-primary text-xs !px-6 !py-2.5 uppercase tracking-widest shadow-none hover:shadow-lg"
+              class="btn-premium-primary !text-[10px] xl:!text-xs !px-4 xl:!px-6 !py-2 xl:!py-2.5 uppercase tracking-widest shadow-lg shadow-primary-500/25 ml-1 flex items-center gap-2 group/part"
             >
+              <Heart class="w-3.5 h-3.5 group-hover/part:scale-125 transition-transform animate-pulse" />
               Participar
             </RouterLink>
           </div>
 
           <!-- Mobile Toggle -->
-          <button @click="isOpen = !isOpen" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+          <button @click="isOpen = !isOpen" class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
             <Menu v-if="!isOpen" class="w-6 h-6" />
             <X v-else class="w-6 h-6" />
           </button>
@@ -172,7 +181,7 @@ const toggleDropdown = (name) => {
 
     <!-- Mobile Menu -->
     <transition name="page">
-      <div v-if="isOpen" class="md:hidden absolute top-full left-0 right-0 mt-4 px-4">
+      <div v-if="isOpen" class="lg:hidden absolute top-full left-0 right-0 mt-4 px-4">
         <div class="glass-card shadow-2xl p-6 border-white/60 overflow-hidden">
           <div class="space-y-4">
             <RouterLink 

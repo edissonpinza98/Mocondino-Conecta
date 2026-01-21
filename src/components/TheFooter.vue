@@ -15,7 +15,7 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
         <!-- Brand Column -->
         <div class="lg:col-span-4 space-y-8">
           <RouterLink to="/" class="flex items-center space-x-4 group">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-600 to-primary-800 rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-500">
+            <div class="icon-container-primary !w-12 !h-12 group-hover:rotate-[360deg] transition-transform duration-1000">
                <MapPinIcon class="w-7 h-7 text-white" />
             </div>
             <div class="flex flex-col text-left">
@@ -29,8 +29,9 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
           </p>
 
           <div class="flex gap-4">
-            <a v-for="icon in [Facebook, Instagram, MessageCircle, Twitter]" :key="icon" href="#" class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-600 hover:border-primary-500 transition-all group">
-              <component :is="icon" class="w-5 h-5 text-slate-400 group-hover:text-white" />
+            <a v-for="icon in [Facebook, Instagram, MessageCircle, Twitter]" :key="icon" href="#" class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary-600 hover:border-primary-500 hover:scale-110 hover:-rotate-6 transition-all group overflow-hidden relative">
+              <div class="absolute inset-0 bg-white/10 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full"></div>
+              <component :is="icon" class="w-5 h-5 text-slate-400 group-hover:text-white animate-float relative z-10" />
             </a>
           </div>
         </div>
@@ -74,8 +75,8 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
           <h3 class="text-xs font-black text-primary-500 uppercase tracking-[0.3em] mb-10">Oficina Principal</h3>
           <div class="space-y-8">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <MapPin class="w-5 h-5 text-secondary-500" />
+              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
+                <MapPin class="w-5 h-5 text-secondary-500 group-hover/icon:animate-bounce" />
               </div>
               <p class="text-slate-400 text-sm font-bold leading-relaxed">
                 Salón Comunal Mocondino <br/>
@@ -84,15 +85,15 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Heart, MapPinIcon, M
             </div>
             
             <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <MessageCircle class="w-5 h-5 text-green-500" />
+              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
+                <MessageCircle class="w-5 h-5 text-green-500 group-hover/icon:animate-pulse" />
               </div>
               <a href="https://wa.me/573123456789" target="_blank" class="text-slate-400 text-sm font-bold hover:text-white transition-colors">+57 312 345 6789</a>
             </div>
 
             <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                <Mail class="w-5 h-5 text-accent-coral" />
+              <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0 group/icon hover:bg-white/10 transition-colors">
+                <Mail class="w-5 h-5 text-accent-coral group-hover/icon:scale-110 transition-transform" />
               </div>
               <a href="mailto:hola@mocondino.com" class="text-slate-400 text-sm font-bold hover:text-white transition-colors">hola@mocondino.com</a>
             </div>
