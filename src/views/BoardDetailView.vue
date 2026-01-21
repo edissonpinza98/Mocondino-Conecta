@@ -386,42 +386,103 @@ const addNewAnnouncement = () => {
 
         <!-- Sidebar -->
         <div class="lg:col-span-4 space-y-12 animate-fade-in-up delay-600">
-          <section class="glass-card p-10 bg-slate-900 text-white border-0 shadow-2xl relative overflow-hidden">
-             <div class="absolute top-0 right-0 w-32 h-32 bg-primary-600/20 blur-3xl rounded-full"></div>
-             <div class="flex items-center justify-between mb-10">
-               <h2 class="text-xl font-black flex items-center gap-3 uppercase tracking-tighter relative z-10">
-                  <Bell class="w-5 h-5 text-secondary-400" />
-                  Anuncios
-               </h2>
-               <button v-if="canEdit" @click="showAddAnnouncement = !showAddAnnouncement" class="relative z-10 p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">
-                 <Plus class="w-4 h-4" />
-               </button>
+          <section class="glass-card p-0 bg-slate-900 text-white border-0 shadow-2xl relative overflow-hidden group/sidebar rounded-[2.5rem]">
+             <!-- Abstract Background Decor -->
+             <div class="absolute top-0 right-0 w-64 h-64 bg-primary-600/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+             <div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary-600/10 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2"></div>
+             
+             <!-- Header -->
+             <div class="p-10 pb-6 relative z-10 flex items-center justify-between border-b border-white/5">
+                <div>
+                  <h2 class="text-2xl font-black flex items-center gap-3 uppercase tracking-tighter">
+                     <Bell class="w-6 h-6 text-secondary-400 group-hover:animate-bounce transition-all" />
+                     Tablón <span class="text-secondary-400">Vivo</span>
+                  </h2>
+                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-1">Comunicados y Alertas</p>
+                </div>
+                <button 
+                  v-if="canEdit" 
+                  @click="showAddAnnouncement = !showAddAnnouncement" 
+                  class="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-secondary-500 hover:text-white rounded-xl transition-all border border-white/10"
+                  :class="{ 'bg-secondary-500 rotate-45': showAddAnnouncement }"
+                >
+                  <Plus class="w-5 h-5" />
+                </button>
              </div>
 
-             <!-- Add Announcement Form -->
+             <!-- Add Announcement Form - Premium Style -->
              <transition name="page">
-               <div v-if="showAddAnnouncement" class="mb-10 bg-white/5 p-6 rounded-2xl border border-white/10 relative z-20">
+               <div v-if="showAddAnnouncement" class="p-8 bg-gradient-to-b from-white/5 to-transparent relative z-20 border-b border-white/5">
                  <div class="space-y-4">
-                   <input v-model="announcementForm.title" type="text" placeholder="Título del anuncio" class="w-full bg-white/10 border-0 rounded-xl p-3 text-sm text-white placeholder-slate-500">
-                   <textarea v-model="announcementForm.content" rows="3" placeholder="Contenido del anuncio..." class="w-full bg-white/10 border-0 rounded-xl p-3 text-sm text-white placeholder-slate-500"></textarea>
-                   <div class="flex gap-2">
-                     <button @click="addNewAnnouncement" class="bg-primary-600 text-white px-4 py-2 rounded-xl text-[10px] font-black tracking-widest uppercase">Guardar</button>
-                     <button @click="showAddAnnouncement = false" class="bg-white/10 text-slate-300 px-4 py-2 rounded-xl text-[10px] font-black tracking-widest uppercase">Cancelar</button>
+                   <div class="relative">
+                     <input 
+                      v-model="announcementForm.title" 
+                      type="text" 
+                      placeholder="Título llamativo..." 
+                      class="w-full bg-slate-800/50 border border-white/10 rounded-2xl p-4 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-secondary-500 outline-none transition-all"
+                     >
+                   </div>
+                   <textarea 
+                    v-model="announcementForm.content" 
+                    rows="3" 
+                    placeholder="Escribe el mensaje aquí..." 
+                    class="w-full bg-slate-800/50 border border-white/10 rounded-2xl p-4 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-secondary-500 outline-none transition-all"
+                   ></textarea>
+                   <div class="flex gap-3">
+                     <button @click="addNewAnnouncement" class="flex-grow bg-secondary-600 hover:bg-secondary-500 text-white py-3 rounded-xl text-xs font-black tracking-widest uppercase transition-all shadow-lg shadow-secondary-600/20">
+                       Publicar Ahora
+                     </button>
+                     <button @click="showAddAnnouncement = false" class="px-6 bg-white/5 text-slate-400 hover:text-white py-3 rounded-xl text-xs font-black transition-all">
+                       <X class="w-4 h-4" />
+                     </button>
                    </div>
                  </div>
                </div>
              </transition>
 
-             <div class="space-y-10 relative z-10">
-               <div v-for="(ann, index) in board.announcements" :key="index" class="relative pl-6 group">
-                 <button v-if="canEdit" @click="store.removeAnnouncement(boardId, ann.id)" class="absolute top-0 right-0 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                   <Trash2 class="w-3 h-3" />
-                 </button>
-                 <div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-500 rounded-full"></div>
-                 <div class="text-[10px] font-black text-secondary-400 mb-2 uppercase tracking-[0.2em]">{{ ann.date }}</div>
-                 <h4 class="font-black text-lg mb-3 tracking-tight">{{ ann.title }}</h4>
-                 <p class="text-sm text-slate-400 leading-relaxed font-medium">{{ ann.content }}</p>
+             <!-- Announcements Feed -->
+             <div class="p-8 space-y-6 relative z-10 max-h-[600px] overflow-y-auto custom-scrollbar">
+               <div v-if="!board.announcements?.length" class="text-center py-20">
+                  <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 opacity-20">
+                    <Bell class="w-8 h-8" />
+                  </div>
+                  <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Sin anuncios recientes</p>
                </div>
+
+               <div v-for="(ann, index) in board.announcements" :key="index" 
+                    class="relative p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/[0.08] hover:border-white/10 transition-all group/ann">
+                 
+                 <!-- Admin Delete -->
+                 <button 
+                  v-if="canEdit" 
+                  @click="store.removeAnnouncement(boardId, ann.id)" 
+                  class="absolute top-4 right-4 text-slate-600 hover:text-red-400 opacity-0 group-hover/ann:opacity-100 transition-all"
+                 >
+                   <Trash2 class="w-4 h-4" />
+                 </button>
+
+                 <div class="flex items-center gap-3 mb-4">
+                    <div class="px-3 py-1 bg-secondary-500/20 text-secondary-400 text-[9px] font-black uppercase tracking-widest rounded-lg border border-secondary-500/20">
+                       {{ ann.date }}
+                    </div>
+                    <div v-if="index === 0" class="flex items-center gap-1.5">
+                       <div class="w-1.5 h-1.5 bg-secondary-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+                       <span class="text-[8px] font-black text-secondary-500 uppercase tracking-widest">Nuevo</span>
+                    </div>
+                 </div>
+
+                 <h4 class="font-black text-lg mb-2 text-white group-hover/ann:text-secondary-400 transition-colors tracking-tight leading-tight">
+                   {{ ann.title }}
+                 </h4>
+                 <p class="text-sm text-slate-400 leading-relaxed font-medium">
+                   {{ ann.content }}
+                 </p>
+               </div>
+             </div>
+             
+             <!-- Footer Feed Info -->
+             <div class="p-6 text-center border-t border-white/5 bg-white/[0.02]">
+                <p class="text-[9px] font-black text-slate-600 uppercase tracking-[0.3em]">Mocondino Conecta • Feed Oficial</p>
              </div>
           </section>
 

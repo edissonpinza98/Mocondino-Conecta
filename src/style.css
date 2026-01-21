@@ -43,6 +43,11 @@ body {
   @apply bg-primary-200 rounded-full hover:bg-primary-300;
 }
 
+/* Custom Scrollbar for Dark Backgrounds */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/10 hover:bg-white/20;
+}
+
 #app {
   width: 100%;
 }
